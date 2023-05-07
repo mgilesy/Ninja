@@ -1,4 +1,4 @@
-import MailSlurp from "./MailSlurp";
+import MailSlurp from "../components/MailSlurp";
 
 const JourneyAccess = [
   { id: "Environment", name: "Environment", value: "au-ign-int-hoth" },

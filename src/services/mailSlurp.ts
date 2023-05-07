@@ -1,11 +1,5 @@
 import axios from "axios";
-
-const mailSlurpConfig = {
-  mailSlurpURL: "https://api.mailslurp.com/inboxes",
-  mailSlurpTags: "POSTMAN,au-ign-int-hoth",
-  mailSlurpAPIKey:
-    "614808a1622546a3eb097036b7b8afb28e65cc29e3633b7e2910388cdaafc4df",
-};
+import config from "./config";
 
 export interface MailSlurpAccount {
   id: string;
@@ -29,17 +23,17 @@ export const createMailSlurpAccount = async () => {
   let data = <MailSlurpAccount>{};
 
   const params = new URLSearchParams({
-    tags: mailSlurpConfig.mailSlurpTags,
+    tags: config("MAILSLURP_TAGS"),
   }).toString();
-
-  let mailURL = mailSlurpConfig.mailSlurpURL + "?" + params;
+  const url = config("MAILSLURP_URL") + "?" + params;
+  const apiKey = config("MAILSLURP_API_KEY");
 
   const res = await axios.post(
-    mailURL,
+    url,
     {},
     {
       headers: {
-        "x-api-key": mailSlurpConfig.mailSlurpAPIKey,
+        "x-api-key": apiKey,
       },
     }
   );
